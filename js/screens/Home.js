@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { home, teamDetails } from './styling';
+import { View, FlatList } from 'react-native';
+import { home } from './styling';
 import { fetchData } from '../Cortex';
-
-const TeamView = ({teamInfo, navigation}) => (
-	<TouchableOpacity style = {home.teamViewTouchable}
-		onPress = {() => navigation.navigate('Team Details', { team: teamInfo })} >
-		<Text style = {teamDetails.teamName} >{teamInfo.name}</Text>
-	</TouchableOpacity>
-);
+import { TeamView } from './components/TeamView';
 
 export default class Home extends Component
 {

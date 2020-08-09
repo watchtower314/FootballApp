@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import { SvgUri } from 'react-native-svg';
-import { teamDetails } from './styling';
+import { teamDetails } from '../styling';
+import PropTypes from 'prop-types';
 
 export const Logo = ({uri}) => (
 	<View style = {teamDetails.image} >
@@ -15,3 +16,7 @@ export const Logo = ({uri}) => (
 				resizeMode = 'center' />}
 	</View>
 );
+
+Logo.propTypes = {
+	uri: PropTypes.string
+};

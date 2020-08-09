@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, View, FlatList } from 'react-native';
-import { teamDetails } from './styling';
-import { matchObject } from '../Cortex';
+import { teamDetails } from '../styling';
+import { matchObject } from '../../Cortex';
+import PropTypes from 'prop-types';
 
 const TextStyled = ({text}) => <Text style = {teamDetails.flatListText}>{text}</Text>;
 
@@ -28,3 +29,22 @@ export const Scroller = ({data, title, id}) => (
 		</View>
 	</View>
 );
+
+Scroller.propTypes = {
+	data: PropTypes.array,
+	title: PropTypes.string,
+	id: PropTypes.number
+};
+
+Player.propTypes = {
+	name: PropTypes.string
+};
+
+Match.propTypes = {
+	match: PropTypes.array
+};
+
+TextStyled.propTypes = {
+	text: PropTypes.string
+};
+

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { fetchData } from '../Cortex';
 import { teamDetails } from './styling';
-import { Scroller } from './Scroller';
-import { Logo } from './Logo';
+import { Scroller } from './components/Scroller';
+import { Logo } from './components/Logo';
 
 export default class TeamDetails extends Component
 {
@@ -25,7 +25,6 @@ export default class TeamDetails extends Component
 
 	loadData = async () =>
 	{
-		// TODO error handle this
 		const players = await fetchData(`https://api.football-data.org/v2/teams/${this.state.id}`);
 		const matches = await fetchData(`https://api.football-data.org/v2/teams/${this.state.id}/matches?status=SCHEDULED&limit=10`);
 		this.setState({
