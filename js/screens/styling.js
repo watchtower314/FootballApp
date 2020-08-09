@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const teamDetails = StyleSheet.create({
 	containerView:
@@ -72,7 +72,8 @@ export const home = StyleSheet.create({
 		height: 100,
 		width: '100%',
 		borderWidth: 1,
-		justifyContent: 'center',
-		padding: 10
+		alignItems: 'center',
+		padding: 10,
+		flexDirection: 'row'
 	}
 });

@@ -22,8 +22,8 @@ export const Scroller = ({data, title, id}) => (
 				renderItem = {({item}) => (
 					title === 'Team Members'
 						? <Player key = {item.id} name = {item.name} />
-						: <Match match = {matchObject(item, id)} /> )}
-				keyExtractor={item => item.id} />
+						: <Match key = {item.id} match = {matchObject(item, id)} /> )}
+				keyExtractor={item => `${item.id}`} />
 				: <TextStyled text = {`No ${title} `} /> }
 		</View>
 	</View>

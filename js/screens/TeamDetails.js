@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { fetchData } from '../Cortex';
 import { teamDetails } from './styling';
 import { Scroller } from './Scroller';
+import { Logo } from './Logo';
 
 export default class TeamDetails extends Component
 {
 	constructor (props)
 	{
 		super(props);
-		console.log(props.route.params);
 		this.state = {
 			...props.route.params.team,
 			matches: [],
@@ -38,9 +38,9 @@ export default class TeamDetails extends Component
 	render ()
 	{
 		return (<View style = {teamDetails.containerView} >
-			<Image style = {teamDetails.image}
-				source = {{uri: this.state.crestUrl}}
-				resizeMode = 'cover'/>
+
+			<Logo uri = {this.state.crestUrl} />
+
 			<Text style = {teamDetails.teamName}>{this.state.name}</Text>
 
 			<Scroller data = {this.state.players} title = {'Team Members'}/>
