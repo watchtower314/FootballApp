@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
-import { fetchData } from '../Cortex';
+import { getPlayers, getMatches } from '../Cortex';
 import { teamDetails } from './styling';
 import { Scroller } from './components/Scroller';
 import { Logo } from './components/Logo';
 
 export default class TeamDetails extends Component
 {
+
 	constructor (props)
 	{
 		super(props);
@@ -15,7 +16,6 @@ export default class TeamDetails extends Component
 			matches: [],
 			loading: true
 		};
-
 	}
 
 	componentDidMount ()
@@ -25,11 +25,11 @@ export default class TeamDetails extends Component
 
 	loadData = async () =>
 	{
-		const players = await fetchData(`https://api.football-data.org/v2/teams/${this.state.id}`);
-		const matches = await fetchData(`https://api.football-data.org/v2/teams/${this.state.id}/matches?status=SCHEDULED&limit=10`);
+		const players = await getPlayers(`https://api.football-data.org/v2/teams/${this.state.id}`);
+		const matches = await getMatches(`https://api.football-data.org/v2/teams/${this.state.id}/matches?status=SCHEDULED&limit=10`, this.state.id);
 		this.setState({
-			players: players.squad,
-			...matches,
+			players,
+			matches,
 			loading: false
 		});
 	}
@@ -38,15 +38,15 @@ export default class TeamDetails extends Component
 	{
 		return (<View style = {teamDetails.containerView} >
 
-			<Logo uri = {this.state.crestUrl} />
+			<Logo uri = {this.state.crest} />
 
 			<Text style = {teamDetails.teamName}>{this.state.name}</Text>
 
 			<Scroller data = {this.state.players} title = {'Team Members'}/>
 
-			<Scroller data = {this.state.matches} title = {'Upcoming Matches'} id = {this.state.id}/>
+			<Scroller data = {this.state.matches} title = {'Upcoming Matches'}/>
 
-			{ this.state.loading && <View style = {teamDetails.loader} >
+			{this.state.loading && <View style = {teamDetails.loader} >
 				<ActivityIndicator size='large' color='teal' />
 			</View>}
 

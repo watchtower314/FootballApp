@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, FlatList } from 'react-native';
 import { home } from './styling';
-import { fetchData } from '../Cortex';
+import { getTeams } from '../Cortex';
 import { TeamView } from './components/TeamView';
 
 export default class Home extends Component
@@ -20,8 +20,8 @@ export default class Home extends Component
 
 	loadTeams = async () =>
 	{
-		const CL = await fetchData('https://api.football-data.org/v2/competitions/CL/teams');
-		this.setState({ teams: CL.teams });
+		const {teams} = await getTeams('https://api.football-data.org/v2/competitions/CL/teams');
+		this.setState({ teams });
 	}
 
 	render()
